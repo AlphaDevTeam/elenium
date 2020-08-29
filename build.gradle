@@ -9,6 +9,15 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'PG1'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 apply plugin : "java"
 ext {
     javaMainClass = "PG1"
